@@ -39,6 +39,15 @@ tasks.withType(Test) {
     systemProperties(System.getProperties())
     useJUnitPlatform()
 }
-test {
-    useJUnitPlatform()
+
+task mobile_tests(type: Test) {
+    useJUnitPlatform {
+        includeTags 'mobile'
+    }
+}
+
+task web_tests(type: Test) {
+    useJUnitPlatform {
+        includeTags 'web'
+    }
 }

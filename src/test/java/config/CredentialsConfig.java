@@ -9,12 +9,16 @@ import org.aeonbits.owner.Config;
 })
 public interface CredentialsConfig extends Config {
 
-    @Key("bslogin")
-    String bs_login();
+    @Key("env")
+    String env();
 
-    @Key("bspassword")
-    String bs_password();
+    @Key("login")
+    String login();
 
-    @Key("bsserver")
-    String bs_server();
+    @Key("password")
+    String password();
+
+    @Key("server")
+    String server();
+
 }
