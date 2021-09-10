@@ -18,7 +18,6 @@ public class MobileTestBase {
     @BeforeAll
     public static void setup() {
         addListener("AllureSelenide", new AllureSelenide());
-
         Configuration.browser = "drivers." + Credentials.credentials.env();
         Configuration.startMaximized = false;
         Configuration.browserSize = null;
@@ -33,20 +32,19 @@ public class MobileTestBase {
     @AfterEach
     public void afterEach() {
         String environment = Credentials.credentials.env();
-        if (environment == "Browserstack") {
+        if (environment.equals("Browserstack")) {
             String sessionId = getSessionId();
             Attach.screenshotAs("Last screenshot");
             Attach.pageSource();
             closeWebDriver();
             Attach.attachVideoBrowserStack(sessionId);
-        } else if (environment == "Selenoid") {
+        } else if (environment.equals("Selenoid")) {
             String sessionId = getSessionId();
             Attach.screenshotAs("Last screenshot");
             Attach.pageSource();
             closeWebDriver();
             Attach.attachVideoSelenoid(sessionId);
-        }
-        else {
+        } else {
             Attach.screenshotAs("Last screenshot");
             Attach.pageSource();
             closeWebDriver();
