@@ -2,7 +2,6 @@ package tests.mobile;
 
 import com.codeborne.selenide.Configuration;
 import config.Credentials;
-import drivers.Local;
 import helpers.Attach;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterEach;
@@ -20,7 +19,7 @@ public class MobileTestBase {
     public static void setup() {
         addListener("AllureSelenide", new AllureSelenide());
 
-        Configuration.browser = System.getProperty("env", Local.class.getName());
+        Configuration.browser = "drivers." + Credentials.credentials.env();
         Configuration.startMaximized = false;
         Configuration.browserSize = null;
         Configuration.timeout = 10000;
